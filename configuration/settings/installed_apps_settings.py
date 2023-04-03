@@ -5,6 +5,7 @@ BUSINESS_APPS = [
 
 THIRD_APPS = [
     'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 DJANGO_APPS = [
