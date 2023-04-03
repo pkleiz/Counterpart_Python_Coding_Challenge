@@ -17,5 +17,6 @@ class SearchResult(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     nearest_earthquake = models.ForeignKey(Earthquake, on_delete=models.CASCADE, null=True)
+
     
 

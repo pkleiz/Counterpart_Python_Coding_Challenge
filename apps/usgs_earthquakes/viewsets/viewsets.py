@@ -1,16 +1,22 @@
 from rest_framework import viewsets, status
+from apps.usgs_earthquakes import models as m_usgs_earthquakes
 from apps.cities import models as m_cities
-from apps.cities.serializers import serializers as sz_cities
+from apps.usgs_earthquakes.serializers import serializers as sz_usgs_earthquakes
 from rest_framework.response import Response
 from apps.logs import utils as u_logs
 
 
-class CityViewSet(viewsets.ModelViewSet):
-    queryset = m_cities.City.objects
-    serializer_class = sz_cities.CitySerializer
+class EarthquakeViewSet(viewsets.ModelViewSet):
+    queryset = m_usgs_earthquakes.Earthquake.objects
+    serializer_class = sz_usgs_earthquakes.EarthquakeSerializer
     
     def create(self, request):
         try:
+            city = m_cities.City.objects.get(name=request.data.get('name',''))
+            
+            start_date = request.data.get('start_date')
+            end_date = request.data.get('end_date')
+            
             city = self.queryset.create(
                 name=request.data.get('name'),
                 latitude=request.data.get('latitude'),
