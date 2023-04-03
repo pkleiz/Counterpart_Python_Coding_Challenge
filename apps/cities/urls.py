@@ -3,7 +3,7 @@ from rest_framework import routers
 from apps.cities.viewsets import viewsets as v_cities
 
 route = routers.DefaultRouter()
-route.register(r'add_city', v_cities.CityViewSet, basename='Add a city')
+route.register(r'cities', v_cities.CityViewSet, basename='Cities')
 
 urlpatterns = [
     path('', include(route.urls)),

@@ -19,5 +19,5 @@ from apps.cities import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('cities/', include(urls))
+    path('', include(urls))
 ]
