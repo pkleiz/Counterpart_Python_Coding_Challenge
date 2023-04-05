@@ -1,4 +1,4 @@
-$('#find-earthquakes').click(function() {
+$('#find-earthquakes').click(function () {
     var startDate = $("#start-date-input-earthquake").val();
     var endDate = $("#end-date-input-earthquake").val();
 
@@ -9,31 +9,41 @@ $('#find-earthquakes').click(function() {
             start_date: startDate,
             end_date: endDate
         },
-        success: function(data) {
-            $("#earthquake-list").empty();
-            $.each(data, function(index, earthquake) {
-            $("#earthquake-list").append("<li> " + 
-            
-            "Magnitude: "+earthquake.magnitude +"</br>"+
-            "Location: "+earthquake.location +"</br>"+
-            "Title: "+earthquake.title +"</br>"+
-            "Latitude: "+earthquake.latitude +"</br>"+
-            "Longitude: "+earthquake.longitude +"</br>"+
-            "Date: "+earthquake.date +"</br>"+
-            "</br></li>");
-            });
+        success: function (data) {
+            if (data.length == 0) {
+                $("#earthquake-list").empty();
+                data = { 'title': 'Without results for these 2 dates.' }
+                $("#earthquake-list").append("Message: " + data.title)
+            }
+            else {
+
+                $("#earthquake-list").empty();
+                $.each(data, function (index, earthquake) {
+                    $("#earthquake-list").append("<li> " +
+
+                        "Magnitude: " + earthquake.magnitude + "</br>" +
+                        "Location: " + earthquake.location + "</br>" +
+                        "Title: " + earthquake.title + "</br>" +
+                        "Latitude: " + earthquake.latitude + "</br>" +
+                        "Longitude: " + earthquake.longitude + "</br>" +
+                        "Date: " + earthquake.date + "</br>" +
+                        "</br></li>");
+                });
+            }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error to load the cities: " + textStatus, errorThrown);
         }
     });
 });
 
 
-$('#nearest-earthquak').click(function() {
+$('#nearest-earthquake').click(function () {
     var startDate = $("#start-date-input-nearest").val();
     var endDate = $("#end-date-input-nearest").val();
-    var selectedCity = $("#cities-dropdown").val();
+    var selectedCity = $("#cities-dropdown option:selected").text()
+
+
 
     $.ajax({
         url: "/apis/nearest-earthquake/",
@@ -41,22 +51,30 @@ $('#nearest-earthquak').click(function() {
         data: {
             start_date: startDate,
             end_date: endDate,
-            city: selectedCity
+            city: selectedCity,
         },
-        success: function(data) {
-            $("#nearest-list").empty();
-            $.each(data, function(index, nearest) {
-            $("#nearest-list").append("<li> " + 
-            
-            "City: "+nearest.city +"</br>"+
-            "Start Date: "+nearest.start_date +"</br>"+
-            "End Date: "+nearest.end_date +"</br>"+
-            "Nearest Earthquake: "+nearest.nearest_earthquake +"</br>"+
-            "Distance to the Earthquake(km): "+nearest.distance_km +"</br>"+
-            "</br></li>");
-            });
+        success: function (data) {
+            if (data.length == 0) {
+                $("#earthquake-list").empty();
+                data = { 'title': 'Without results for these 2 dates.' }
+                $("#earthquake-list").append("Message: " + data.title)
+            }
+            else {
+                $("#nearest-list").empty();
+                $.each(data, function (index, nearest) {
+                    $("#nearest-list").append("<li> " +
+
+                        "City: " + nearest.city + "</br>" +
+                        "Start Date: " + nearest.start_date + "</br>" +
+                        "End Date: " + nearest.end_date + "</br>" +
+                        "Nearest Earthquake: " + nearest.nearest_earthquake + "</br>" +
+                        "Nearest Earthquake Date: " + nearest.nearest_earthquake_date + "</br>" +
+                        "Distance to the Earthquake(km): " + nearest.distance_km + "</br>" +
+                        "</br></li>");
+                });
+            }
         },
-        error: function(jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error to load the cities: " + textStatus, errorThrown);
         }
     });

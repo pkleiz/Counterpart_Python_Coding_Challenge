@@ -99,7 +99,7 @@ class SearchResultViewSet(viewsets.ModelViewSet):
                     queryset_searchs = self.queryset.filter(start_date=start_date, end_date=end_date, city=actual_city).all()
                     
             else:
-                queryset_searchs = self.queryset.all()
+                queryset_searchs = self.queryset.all().order_by('-id')
                 
             queryset = queryset_searchs
 

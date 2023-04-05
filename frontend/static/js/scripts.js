@@ -33,7 +33,8 @@ $('#nearest-link').click(function() {
         success: function(data) {
             $("#cities-dropdown").empty();
             $.each(data, function(index, city) {
-            $("#cities-dropdown").append("<option value=" + city.name + ">"+city.name+"</option>");
+                console.log(city.name)
+                $("#cities-dropdown").append("<option value=" + city.name + ">"+city.name+"</option>");
             });
         },
         error: function(jqXHR, textStatus, errorThrown) {
@@ -51,6 +52,7 @@ $('#history-link').click(function() {
         type: "GET",
         success: function(data) {
             $("#history-list").empty();
+            
             $.each(data, function(index, history) {
             $("#history-list").append("<li> " + 
             
@@ -58,6 +60,7 @@ $('#history-link').click(function() {
             "Start Date: "+history.start_date +"</br>"+
             "End Date: "+history.end_date +"</br>"+
             "Nearest Earthquake: "+history.nearest_earthquake +"</br>"+
+            "Nearest Earthquake Date: " + history.nearest_earthquake_date + "</br>" +
             "Distance to the Earthquake(km): "+history.distance_km +"</br>"+
             "</br></li>");
             });
