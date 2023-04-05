@@ -3,9 +3,8 @@ from django.urls import path, include
 from rest_framework import routers
 from apps.usgs_earthquakes.viewsets import viewsets as v_usgs_earthquakes
 from apps.cities.viewsets import viewsets as v_cities
-from django.views.generic import TemplateView
+from frontend import urls as u_frontend
 
-from .views import custom_post_view
 
 
 route = routers.DefaultRouter()
@@ -18,5 +17,5 @@ route.register(r'nearest-earthquake', v_usgs_earthquakes.SearchResultViewSet, ba
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('apis/', include(route.urls)),
-    path('', TemplateView.as_view(template_name='index.html')),
+    path('', include(u_frontend)),
 ]

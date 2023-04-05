@@ -1,7 +1,8 @@
 BUSINESS_APPS = [
     'apps.usgs_earthquakes',
     'apps.cities',
-    'apps.logs'
+    'apps.logs',
+    'frontend'
 ]
 
 THIRD_APPS = [
