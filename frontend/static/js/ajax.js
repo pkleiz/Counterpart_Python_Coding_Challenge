@@ -1,7 +1,7 @@
 $('#find-earthquakes').click(function () {
     var startDate = $("#start-date-input-earthquake").val();
     var endDate = $("#end-date-input-earthquake").val();
-
+    $("#find-earthquakes").prop("disabled", true).html('Loading <i class="fa fa-spinner fa-spin"></i> ')
     $.ajax({
         url: "/apis/earthquakes/",
         type: "GET",
@@ -30,9 +30,11 @@ $('#find-earthquakes').click(function () {
                         "</br></li>");
                 });
             }
+            $("#find-earthquakes").prop("disabled", false).html('Find Earthquakes')
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error to load the cities: " + textStatus, errorThrown);
+            $("#find-earthquakes").prop("disabled", false).html('Error, try again')
         }
     });
 });
@@ -42,6 +44,7 @@ $('#nearest-earthquake').click(function () {
     var startDate = $("#start-date-input-nearest").val();
     var endDate = $("#end-date-input-nearest").val();
     var selectedCity = $("#cities-dropdown option:selected").text()
+    $("#nearest-earthquake").prop("disabled", true).html('Loading <i class="fa fa-spinner fa-spin"></i> ')
 
 
 
@@ -73,6 +76,8 @@ $('#nearest-earthquake').click(function () {
                         "</br></li>");
                 });
             }
+            $("#nearest-earthquake").prop("disabled", false).html('Nearest Earthquake')
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log("Error to load the cities: " + textStatus, errorThrown);
