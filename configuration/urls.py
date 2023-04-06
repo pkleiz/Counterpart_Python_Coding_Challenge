@@ -1,23 +1,21 @@
-"""configuration URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/3.2/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path, include
-from apps.cities import urls
+from rest_framework import routers
+from apps.usgs_earthquakes.viewsets import viewsets as v_usgs_earthquakes
+from apps.cities.viewsets import viewsets as v_cities
+from frontend import urls as u_frontend
+
+
+
+route = routers.DefaultRouter()
+route.register(r'cities', v_cities.CityViewSet, basename='cities')
+route.register(r'earthquakes', v_usgs_earthquakes.EarthquakeViewSet, basename='earthquakes')
+route.register(r'nearest-earthquake', v_usgs_earthquakes.SearchResultViewSet, basename='nearest-earthquakes')
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(urls))
+    path('apis/', include(route.urls)),
+    path('', include(u_frontend)),
 ]

@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Earthquake distance checker</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+
+    </head>
+    <body>
+        <div class="d-flex" id="wrapper">
+            <div class="border-end bg-white" id="sidebar-wrapper">
+                <div class="sidebar-heading border-bottom bg-light">Counterpart EQ Near</div>
+                <div class="list-group list-group-flush">
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id="cities-link" href="#cities">Cities</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id="earthquakes-link" href="#earthquakes">Earthquakes<a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id="nearest-link" href="#nearest-earthquakes">Nearest earthquake</a>
+                    <a class="list-group-item list-group-item-action list-group-item-light p-3" id="history-link" href="#search-history">Search History</a>
+                </div>
+            </div>
+
+            <div id="page-content-wrapper">
+
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse">
+                            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                                <li class="nav-item active"><a class="nav-link" href="#!" id='home'>Home</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="container-fluid" id="content">
+                    <div id="home-content">
+                        <h1 class="mt-4">Welcome</h1>
+                        <p>Welcome to the earthquake distance checker! This web application allows you to check the distance between a city and the nearest earthquake. The software uses HTML for the frontend and Django REST Framework for the backend. It's also has automatic detection of the latitude and longitude of the city, making it easier for you to use. Give it a try and stay safe!</p>
+                    </div>
+
+                    <div id="cities-content">
+                        <h1 class="mt-4">Cities</h1>
+                        {% include 'frontend/partials/cities.html' %}
+                    </div>
+                    
+                    <div id="earthquakes-content">
+                        <h1 class="mt-4">Earthquakes</h1>
+                        {% include 'frontend/partials/earthquake.html' %}
+                    </div>
+                    
+                    <div id="nearest-earthquake-content">
+                        <h1 class="mt-4">Nearest Earthquake</h1>
+                        {% include 'frontend/partials/nearest_earthquake.html' %}
+                    </div>
+                    
+                    <div id="search-history-content">
+                        <h1 class="mt-4">Search History</h1>
+                        {% include 'frontend/partials/history.html' %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/ajax.js' %}"></script>
+    </body>
+</html>

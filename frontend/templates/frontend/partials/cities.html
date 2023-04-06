@@ -1,0 +1,11 @@
+<div class="input-group mb-3" action="{% url 'add-city' %}">
+    {% csrf_token %}
+    <input type="text" class="form-control" id="city-input">
+    <button type="button" class="btn btn-primary" id="add-city-btn">Add</button>
+    
+</div>
+<ul id="city-list">
+
+</ul>
+
+  

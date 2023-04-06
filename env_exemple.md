@@ -4,3 +4,8 @@ DJANGO_SETTINGS_MODULE=
 
 ###################### AUTH ##########################
 SECRET_KEY=
+
+###################### API ##########################
+BASE_POINT=
+USER=
+PASS=
