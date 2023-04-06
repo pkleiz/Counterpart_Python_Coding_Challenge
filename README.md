@@ -2,6 +2,9 @@
 
 > Counterpart EQ Near is a software system for monitoring earthquakes. It utilizes the public API of the USGS Earthquake Catalog to gather information about earthquakes occurring worldwide. Additionally, it enables users to monitor earthquakes in a specific city and view information about the closest earthquake to that city.
 
+## Documentation
+https://github.com/pkleiz/Counterpart_Python_Coding_Challenge/
+
 ## Introduction
 This API uses Django and Django REST Framework (DRF) to provide a set of endpoints to access the data.
 
