@@ -17,6 +17,9 @@ $('#cities-link').click(function() {
     });
 });
 
+$('#add-city-btn').click(function(){
+    $("#add-city-btn").html('Loading <i class="fa fa-spinner fa-spin"></i> ')
+});
 
 $('#earthquakes-link').click(function() {
     $('#cities-content, #earthquakes-content, #nearest-earthquake-content, #search-history-content, #home-content').hide()
