@@ -121,6 +121,9 @@ http://127.0.0.1:8000/apis/nearest-earthquake
 #### Get the closest earthquake based in a city: Get
 Use city, start_date and end_date
 
+### Logs
+Was created for storage any error in the system. Can be consulted on Database or Django Admin
+
 ## Frontend
 The frontend of the project was made thinking in simplify the view of data, for this reason, all data is showed in a single page!
 
